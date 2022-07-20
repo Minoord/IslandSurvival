@@ -13,7 +13,7 @@ public class WorldTime : MonoBehaviour
 
     [Header("Day/Night Cycle Settings")] 
     [Range(0, 23)] [SerializeField] private int dayStartHour = 6;
-    [Range(1, 24)] [SerializeField] private int maxDayEndHour = 24;
+    [Range(1, 24)] [SerializeField] private int endOfDayHour = 24;
     
     [Space]
     [Range(1, 120)] [SerializeField] private int dayInMinutes = 1;
@@ -43,7 +43,7 @@ public class WorldTime : MonoBehaviour
     public int CurrentDay => _day;
     public float CurrentTime => _time;
     public int DayInMinutes => dayInMinutes;
-    public bool IsEndOfDay => (int)_time == maxDayEndHour;
+    public bool IsEndOfDay => (int)_time == endOfDayHour;
 
     private void FixedUpdate()
     {
