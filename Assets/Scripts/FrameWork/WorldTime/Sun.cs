@@ -44,7 +44,7 @@ public class Sun : MonoBehaviour
     {
         var newSunRotation = Vector3.zero;
         
-        _timeMultiplier = _worldTime.CurrentTime - sunrise;
+        _timeMultiplier = _worldTime.CurrentTimeInHours - sunrise;
         _additionMultiplier = _timeMultiplier * _rotationMultiplier;
         _currentSunRotation = _startRotation.x +  _additionMultiplier;
 

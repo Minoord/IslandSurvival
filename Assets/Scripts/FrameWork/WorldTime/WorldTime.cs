@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class WorldTime : MonoBehaviour
 {
     private int _day;
-    private float _time;
-    [Range(0, 23)] [SerializeField] private int startHour = 6;
+    private float _timeInHours;
+    [Range(0, 23)] [SerializeField] private int firstGameDayHour = 6;
 
     [Header("Day/Night Cycle Settings")] 
     [Range(0, 23)] [SerializeField] private int dayStartHour = 6;
@@ -35,15 +35,10 @@ public class WorldTime : MonoBehaviour
 
     private void InitClock()
     {
-        _time = startHour;
+        _timeInHours = firstGameDayHour;
         if (!useUI) return;
         worldClock = GameObject.Find("WorldClock").GetComponent<Text>();
     }
-
-    public int CurrentDay => _day;
-    public float CurrentTime => _time;
-    public int DayInMinutes => dayInMinutes;
-    public bool IsEndOfDay => (int)_time == endOfDayHour;
 
     private void FixedUpdate()
     {
@@ -58,7 +53,7 @@ public class WorldTime : MonoBehaviour
 
     private void AddTime()
     {
-        _time += Time.fixedDeltaTime / 3600 * _timeMultiplier;
+        _timeInHours += Time.fixedDeltaTime / 3600 * _timeMultiplier;
     }
 
     private void ScaleTime(int timeInMinutes = 720)
@@ -68,7 +63,7 @@ public class WorldTime : MonoBehaviour
 
     private string FormatTime()
     {
-        var hours = _time;
+        var hours = _timeInHours;
         var contextHours = Mathf.FloorToInt(hours);
         
         var minutes = (hours - contextHours) * 60;
@@ -97,6 +92,11 @@ public class WorldTime : MonoBehaviour
 
     private void ResetTime()
     {
-        _time = 0;
+        _timeInHours = 0;
     }
+    
+    public int CurrentDay => _day;
+    public float CurrentTimeInHours => _timeInHours;
+    public int DayInMinutes => dayInMinutes;
+    public bool IsEndOfDay => (int)_timeInHours == endOfDayHour;
 }
