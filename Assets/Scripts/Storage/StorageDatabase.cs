@@ -18,7 +18,7 @@ public class StorageDatabase : MonoBehaviour
 
     private void Start()
     {
-        var boxCollidersCount = storageLength * storageWidth;
+        var boxCollidersCount = storageLength * storageWidth / (boxColliderLengthWidth.x * boxColliderLengthWidth.y);
         if (storageBoxColliders.Count != boxCollidersCount || storageBoxColliders == null)
         {
             DeleteStorageColliders();
@@ -27,23 +27,26 @@ public class StorageDatabase : MonoBehaviour
     }
 
 
-    private void AddStorageColliders(int boxCollidersCount)
+    private void AddStorageColliders(float boxCollidersCount)
     {
         var colliderPlacement = boxColliderStartPlacement;
-        var maxiumXPlacement = storageWidth * boxColliderLengthWidth.x + boxColliderStartPlacement.x + boxColliderLengthWidth.x ;
+        var maxiumXPlacement = storageWidth * boxColliderLengthWidth.x + boxColliderStartPlacement.x ;
         
         for (int i = 0; i < boxCollidersCount; i++)
         {
-            var newCollider = Instantiate(gameObject, colliderPlacement, new Quaternion(0, 0, 0, 0));
+            var newCollider = new GameObject();
             newCollider.transform.localScale = boxColliderLengthWidth;
+            newCollider.transform.position = colliderPlacement;
             newCollider.AddComponent<BoxCollider2D>();
+            newCollider.AddComponent<SpriteRenderer>();
+            
             storageBoxColliders.Add(newCollider);
             
             colliderPlacement.x += boxColliderLengthWidth.x;
             
             if (colliderPlacement.x == maxiumXPlacement)
             {
-                var newYplacement = boxColliderStartPlacement.y + boxColliderLengthWidth.y;
+                var newYplacement = colliderPlacement.y - boxColliderLengthWidth.y;
                 colliderPlacement = new Vector2(boxColliderStartPlacement.x, newYplacement);
             }
         }
@@ -54,9 +57,9 @@ public class StorageDatabase : MonoBehaviour
         if(storageBoxColliders == null) return;
         foreach (var colliders in storageBoxColliders)
         {
-            storageBoxColliders.Remove(colliders);
             Destroy(colliders);
         }
+        storageBoxColliders.Clear();
     }
 
     /*public void AddStorage(Item addedItem)
