@@ -39,6 +39,8 @@ public class StorageDatabase : MonoBehaviour
             newCollider.transform.position = colliderPlacement;
             newCollider.AddComponent<BoxCollider2D>();
             newCollider.AddComponent<SpriteRenderer>();
+
+            newCollider.transform.parent = gameObject.transform;  
             
             storageBoxColliders.Add(newCollider);
             
