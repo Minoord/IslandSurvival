@@ -306,8 +306,6 @@ GameObject:
   m_Component:
   - component: {fileID: 394415361}
   - component: {fileID: 394415360}
-  - component: {fileID: 394415363}
-  - component: {fileID: 394415362}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -391,43 +389,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &394415362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394415359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d83d8dbcec634046a862d970afbf279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHour: 6
-  dayStartHour: 6
-  endOfDayHour: 24
-  dayInMinutes: 1
-  useRealTime: 0
-  useUI: 0
-  worldClock: {fileID: 0}
-  showSeconds: 0
-  onNewDay:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &394415363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394415359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30dfb966c02b2d4fa8a14c1910d8808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sunrise: 7
-  sunset: 20
 --- !u!1 &1226488139 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bec8cb89d0aa7574eb6c7af2591ca18c, type: 3}
